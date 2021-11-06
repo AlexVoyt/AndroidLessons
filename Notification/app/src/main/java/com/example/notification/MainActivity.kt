@@ -55,32 +55,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val button1: Button = findViewById(R.id.Notification1);
-        var notificationsUnnoticed: Int = 0;
-        writeToSharedPref("notificationUnnoticed", 0)
-        writeToSharedPref("multipleUnnoticed", 0)
-        createNotificationChannel("Channel ID", "Channel Name", "Channel Description")
+        var notificationsUnnoticed1: Int = 0;
+        writeToSharedPref("notificationUnnoticed1", 0)
+        writeToSharedPref("multipleUnnoticed1", 0)
+        createNotificationChannel("Channel ID1", "Channel Name1", "Channel Description1")
 
         button1.setOnClickListener {
+            // Telling DismissReceiver to work with first channel
+            writeToSharedPref("useChannel1", 1)
+            writeToSharedPref("useChannel2", 0)
+
             // incrementing unnoticed counter
-            writeToSharedPref("notificationUnnoticed", readFromSharedPref("notificationUnnoticed") + 1)
-            var notificationID = readFromSharedPref("notificationUnnoticed")
-            notificationsUnnoticed = notificationID
+            writeToSharedPref("notificationUnnoticed1", readFromSharedPref("notificationUnnoticed1") + 1)
+            var notificationID = readFromSharedPref("notificationUnnoticed1")
+            notificationsUnnoticed1 = notificationID
 
             val intent = Intent(this, DismissReceiver::class.java)
             val pendingIntent = PendingIntent.getBroadcast(this.applicationContext, 0, intent, 0)
 
-            var builder = NotificationCompat.Builder(this, "Channel ID")
+            var builder = NotificationCompat.Builder(this, "Channel ID1")
                 .setDeleteIntent(pendingIntent)
 
-            if (notificationsUnnoticed >= 3)
+            if (notificationsUnnoticed1 >= 3)
             {
                 // We set notificationID to constant value in order to not create new
                 // notifications and to update existing one
                 notificationID = 3
 
                 // Tell DismissReceiver not to decrement out unnoticed count, but set to 0
-                writeToSharedPref("multipleUnnoticed", 1)
+                writeToSharedPref("multipleUnnoticed1", 1)
 
                 // Delete our previous notifications
                 val notificationManager: NotificationManager =
@@ -88,14 +93,14 @@ class MainActivity : AppCompatActivity() {
                 notificationManager.cancelAll()
 
                 builder.setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("You missed $notificationsUnnoticed notifications")
+                    .setContentTitle("CH1: You missed $notificationsUnnoticed1 notifications")
                     .setContentText("notice me senpai")
                     .setAutoCancel(true).priority = NotificationCompat.PRIORITY_DEFAULT
             }
             else
             {
                 builder.setSmallIcon(R.drawable.ic_launcher_background)
-                    .setContentTitle("Very important")
+                    .setContentTitle("CH1: Very important")
                     .setContentText("Trust me")
                     .setAutoCancel(true).priority = NotificationCompat.PRIORITY_DEFAULT
             }
@@ -103,8 +108,65 @@ class MainActivity : AppCompatActivity() {
             with(NotificationManagerCompat.from(this)) {
                 notify(notificationID, builder.build()) // посылаем уведомление
             }
-            Log.d("Click", "Unnoticed notifications: $notificationsUnnoticed")
 
+            Log.d("Click", "Unnoticed notifications from CH1: $notificationsUnnoticed1")
+        }
+
+        // TODO: I know, I know, copy-paste is bad, but modern times requires modern solutions
+        val button2: Button = findViewById(R.id.Notification2);
+        var notificationsUnnoticed2: Int = 0;
+        writeToSharedPref("notificationUnnoticed2", 0)
+        writeToSharedPref("multipleUnnoticed2", 0)
+        createNotificationChannel("Channel ID2", "Channel Name2", "Channel Description2")
+
+        button2.setOnClickListener {
+            // Telling DismissReceiver to work with second channel
+            writeToSharedPref("useChannel1", 0)
+            writeToSharedPref("useChannel2", 1)
+
+            // incrementing unnoticed counter
+            writeToSharedPref("notificationUnnoticed2", readFromSharedPref("notificationUnnoticed2") + 1)
+            var notificationID = readFromSharedPref("notificationUnnoticed2")
+            notificationsUnnoticed2 = notificationID
+
+            val intent = Intent(this, DismissReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(this.applicationContext, 0, intent, 0)
+
+            var builder = NotificationCompat.Builder(this, "Channel ID2")
+                .setDeleteIntent(pendingIntent)
+
+            if (notificationsUnnoticed1 >= 3)
+            {
+                // We set notificationID to constant value in order to not create new
+                // notifications and to update existing one
+                notificationID = 3
+
+                // Tell DismissReceiver not to decrement out unnoticed count, but set to 0
+                writeToSharedPref("multipleUnnoticed2", 1)
+
+                // Delete our previous notifications
+                val notificationManager: NotificationManager =
+                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                notificationManager.cancelAll()
+
+                builder.setSmallIcon(R.drawable.ic_launcher_background)
+                    .setContentTitle("CH2: You missed $notificationsUnnoticed2 notifications")
+                    .setContentText("notice me senpai")
+                    .setAutoCancel(true).priority = NotificationCompat.PRIORITY_DEFAULT
+            }
+            else
+            {
+                builder.setSmallIcon(R.drawable.ic_launcher_background)
+                    .setContentTitle("CH2: Very important")
+                    .setContentText("Trust me")
+                    .setAutoCancel(true).priority = NotificationCompat.PRIORITY_DEFAULT
+            }
+
+            with(NotificationManagerCompat.from(this)) {
+                notify(notificationID, builder.build()) // посылаем уведомление
+            }
+
+            Log.d("Click", "Unnoticed notifications from CH2: $notificationsUnnoticed2")
         }
     }
 }
