@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             var builder = NotificationCompat.Builder(this, "Channel ID2")
                 .setDeleteIntent(pendingIntent)
 
-            if (notificationsUnnoticed1 >= 3)
+            if (notificationsUnnoticed2 >= 3)
             {
                 // We set notificationID to constant value in order to not create new
                 // notifications and to update existing one
