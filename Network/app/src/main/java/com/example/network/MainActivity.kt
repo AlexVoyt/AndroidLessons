@@ -14,8 +14,6 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import java.util.*
 
-
-
 class MainActivity : AppCompatActivity(), Observer {
 
     override fun update(p0: Observable?, URL: Any?) {
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity(), Observer {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -42,7 +39,9 @@ class MainActivity : AppCompatActivity(), Observer {
             .build()
 
         val userName = "AlexVoyt"
+
         val github: GithubInfo = retrofit.create(GithubInfo::class.java)
+
         github.getUser(userName).enqueue(object: Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
 
