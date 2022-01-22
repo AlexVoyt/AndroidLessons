@@ -13,5 +13,5 @@ data class Creature(
     @SerializedName("spd") val spd: Int?,
     @SerializedName("grw") val grw: Int?,
     @SerializedName("val") val value: Int?,
-    @SerializedName("special") val special: Int?
+    @SerializedName("special") val special: String?
     )
