@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_towns">
+
+    <fragment
+        android:id="@+id/navigation_towns"
+        android:name="com.example.finalproject.ui.towns.TownsFragment"
+        android:label="@string/title_towns"
+        tools:layout="@layout/fragment_towns" />
+
+    <fragment
+        android:id="@+id/navigation_heroes"
+        android:name="com.example.finalproject.ui.heroes.HeroesFragment"
+        android:label="@string/title_heroes"
+        tools:layout="@layout/fragment_heroes" />
+
+    <fragment
+        android:id="@+id/navigation_creatures"
+        android:name="com.example.finalproject.ui.creatures.CreaturesFragment"
+        android:label="@string/title_creatures"
+        tools:layout="@layout/fragment_creatures" />
+</navigation>

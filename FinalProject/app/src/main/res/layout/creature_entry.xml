@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/att"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Attack:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/att_label"
+        app:layout_constraintTop_toBottomOf="@+id/lvl" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Name:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/name_label"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lvl"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Level:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/lvl_label"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/min_d"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="1dp"
+        android:text="Min Damage:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/min_d_label"
+        app:layout_constraintTop_toBottomOf="@+id/def" />
+
+    <TextView
+        android:id="@+id/max_d"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Max Damage:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/max_d_label"
+        app:layout_constraintTop_toBottomOf="@+id/min_d" />
+
+    <TextView
+        android:id="@+id/hp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="HP"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/hp_label"
+        app:layout_constraintTop_toBottomOf="@+id/max_d" />
+
+    <TextView
+        android:id="@+id/spd"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Speed:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/spd_label"
+        app:layout_constraintTop_toBottomOf="@+id/hp" />
+
+    <TextView
+        android:id="@+id/grw"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Growth:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/grw_label"
+        app:layout_constraintTop_toBottomOf="@+id/spd" />
+
+    <TextView
+        android:id="@+id/val"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Value:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/val_label"
+        app:layout_constraintTop_toBottomOf="@+id/grw" />
+
+    <TextView
+        android:id="@+id/special"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Special:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/special_label"
+        app:layout_constraintTop_toBottomOf="@+id/val" />
+
+    <TextView
+        android:id="@+id/def"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Defence:"
+        android:textAlignment="textStart"
+        app:layout_constraintStart_toEndOf="@+id/def_label"
+        app:layout_constraintTop_toBottomOf="@+id/att" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="82dp"
+        android:layout_height="212dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_creatures" />
+
+    <TextView
+        android:id="@+id/name_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lvl_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Level:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/name_label" />
+
+    <TextView
+        android:id="@+id/att_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="Attack:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/lvl_label" />
+
+    <TextView
+        android:id="@+id/def_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Defence:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/att_label" />
+
+    <TextView
+        android:id="@+id/min_d_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Min Damage:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/def_label" />
+
+    <TextView
+        android:id="@+id/max_d_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Max Damage:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/min_d_label" />
+
+    <TextView
+        android:id="@+id/hp_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="HP:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/max_d_label" />
+
+    <TextView
+        android:id="@+id/spd_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Speed:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/hp_label" />
+
+    <TextView
+        android:id="@+id/grw_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Growth:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/spd_label" />
+
+    <TextView
+        android:id="@+id/val_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Value:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/grw_label" />
+
+    <TextView
+        android:id="@+id/special_label"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Special:"
+        android:textAlignment="textEnd"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/val_label" />
+</androidx.constraintlayout.widget.ConstraintLayout>

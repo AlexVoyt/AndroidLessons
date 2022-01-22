@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_towns"
+        android:icon="@drawable/ic_towns"
+        android:title="@string/title_towns" />
+
+    <item
+        android:id="@+id/navigation_heroes"
+        android:icon="@drawable/ic_heroes"
+        android:title="@string/title_heroes" />
+
+    <item
+        android:id="@+id/navigation_creatures"
+        android:icon="@drawable/ic_creatures"
+        android:title="@string/title_creatures" />
+
+</menu>
