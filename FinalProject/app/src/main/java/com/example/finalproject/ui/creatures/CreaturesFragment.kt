@@ -52,16 +52,21 @@ class CreaturesFragment : Fragment() {
         _binding = FragmentCreaturesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val data: LiveData<List<Creature>> = creaturesViewModel.getCreatures()!!
         data.observe(viewLifecycleOwner, {
-            var list = root.findViewById<RecyclerView>(R.id.creatureRecyclerView)
+            var list = view.findViewById<RecyclerView>(R.id.creatureRecyclerView)
             list.layoutManager = LinearLayoutManager(context)
 
             val itemAdapter = CreatureAdapter(creaturesViewModel.getCreatures()!!.value!!)
             list.adapter = itemAdapter
         })
-
-        return root
     }
 
     override fun onDestroyView() {
@@ -70,56 +75,3 @@ class CreaturesFragment : Fragment() {
     }
 
 }
-
-/*
-
-     val retrofit: Retrofit =  Retrofit.Builder()
-         .baseUrl("http://restapi.alexvoyt.com:13342/")
-         .addConverterFactory(GsonConverterFactory.create())
-         .build()
-
-     val hommAPI: HommAPI = retrofit.create(HommAPI::class.java)
-
-
-     hommAPI.listCreatures().enqueue(object: Callback<List<Creature>> {
-         override fun onFailure(call: Call<List<Creature>>, t: Throwable) {
-             Toast.makeText(context, "REQUEST FAILED", Toast.LENGTH_SHORT)
-         }
-
-         override fun onResponse(call: Call<List<Creature>>, response: Response<List<Creature>>) {
-             Toast.makeText(context, "REQUEST SUCCESS", Toast.LENGTH_SHORT)
-             val creatureList = response.body()
-
-             var list = root.findViewById<RecyclerView>(R.id.creatureRecyclerView)
-
-             // Set the LayoutManager that this RecyclerView will use.
-             list.layoutManager = LinearLayoutManager(context)
-             // Adapter class is initialized and list is passed in the param.
-             val itemAdapter = CreatureAdapter(creatureList!!)
-             // adapter instance is set to the recyclerview to inflate the items.
-             list.adapter = itemAdapter
-
-             RetrofitObservable.getInstance()?.notifyObserverWithResponse(creatureList)
-         }
-     })
-
-     val thread = Thread {
-         try {
-             val creatureList = hommAPI.listCreatures().execute().body()
-
-             var list = root.findViewById<RecyclerView>(R.id.creatureRecyclerView)
-
-             // Set the LayoutManager that this RecyclerView will use.
-             list.layoutManager = LinearLayoutManager(context)
-             // Adapter class is initialized and list is passed in the param.
-             val itemAdapter = CreatureAdapter(creatureList!!)
-             // adapter instance is set to the recyclerview to inflate the items.
-             list.adapter = itemAdapter
-         } catch (e: Exception) {
-             e.printStackTrace()
-         }
-     }
-
-     thread.start()
-     thread.join()
-     */

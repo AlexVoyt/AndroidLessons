@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.creatures
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -61,10 +62,12 @@ class CreaturesViewModel : ViewModel() {
 
         hommAPI.listCreatures().enqueue(object: Callback<List<Creature>> {
             override fun onFailure(call: Call<List<Creature>>, t: Throwable) {
+                Log.d("sad", "very")
+                Log.d("error", t.message!!)
             }
 
             override fun onResponse(call: Call<List<Creature>>, response: Response<List<Creature>>) {
-
+                Log.d("happy", "very")
                 val _creatures = response.body()
 
                 creatures!!.value = _creatures!!
