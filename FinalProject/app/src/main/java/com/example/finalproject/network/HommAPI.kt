@@ -10,7 +10,7 @@ interface HommAPI {
     fun listCreatures(): Call<List<Creature>>
 
     @GET("homm/heroes")
-    fun listHeroes(): Call<Hero>
+    fun listHeroes(): Call<List<Hero>>
 
 }
 /*

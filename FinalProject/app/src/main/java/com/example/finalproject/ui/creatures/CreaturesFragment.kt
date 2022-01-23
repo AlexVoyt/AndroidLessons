@@ -26,6 +26,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import androidx.lifecycle.LiveData
+
+
+
 
 class CreaturesFragment : Fragment() {
 
@@ -48,10 +52,14 @@ class CreaturesFragment : Fragment() {
         _binding = FragmentCreaturesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        var list = root.findViewById<RecyclerView>(R.id.creatureRecyclerView)
-        list.layoutManager = LinearLayoutManager(context)
-        val itemAdapter = CreatureAdapter(creaturesViewModel.getCreatures())
-        list.adapter = itemAdapter
+        val data: LiveData<List<Creature>> = creaturesViewModel.getCreatures()!!
+        data.observe(viewLifecycleOwner, {
+            var list = root.findViewById<RecyclerView>(R.id.creatureRecyclerView)
+            list.layoutManager = LinearLayoutManager(context)
+
+            val itemAdapter = CreatureAdapter(creaturesViewModel.getCreatures()!!.value!!)
+            list.adapter = itemAdapter
+        })
 
         return root
     }

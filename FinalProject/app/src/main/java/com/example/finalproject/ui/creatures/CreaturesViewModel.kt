@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.finalproject.data.Creature
+import com.example.finalproject.data.Hero
 import com.example.finalproject.network.HommAPI
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,7 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CreaturesViewModel : ViewModel() {
-
+/*
     private val _creatureList =
         listOf(
             Creature("Pikeman", 1, 4, 5, 1, 3, 10, 4, 14, 80, "Immune to jousting"),
@@ -36,5 +37,39 @@ class CreaturesViewModel : ViewModel() {
 
     fun getCreatures() : List<Creature> {
         return _creatureList
+    }
+*/
+
+    private var creatures: MutableLiveData<List<Creature>>? = null
+
+    fun getCreatures(): LiveData<List<Creature>>? {
+        if (creatures == null) {
+            creatures = MutableLiveData()
+            loadData()
+        }
+        return creatures
+    }
+
+    private fun loadData() {
+
+        val retrofit: Retrofit =  Retrofit.Builder()
+            .baseUrl("http://restapi.alexvoyt.com:13342/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val hommAPI: HommAPI = retrofit.create(HommAPI::class.java)
+
+        hommAPI.listCreatures().enqueue(object: Callback<List<Creature>> {
+            override fun onFailure(call: Call<List<Creature>>, t: Throwable) {
+            }
+
+            override fun onResponse(call: Call<List<Creature>>, response: Response<List<Creature>>) {
+
+                val _creatures = response.body()
+
+                creatures!!.value = _creatures!!
+
+            }
+        })
     }
 }
